@@ -1,50 +1,81 @@
 #include <iostream>
 using namespace std;
 
+class BasicInfo{
+protected:
+    char name[30];
+    int age;
+    char address[50];
 
-class employee{
-    char name[20];
-    int id;
-    float salary;
-
-    public:
-    void accept(){
-        cout<<"\nName:";
+public:
+    void acceptBasicInfo(){
+        cout<<"Enter Name:";
         cin>>name;
-        cout<<"ID:";
-        cin>>id;
-        cout<<"Salary:";
-        cin>>salary;
+        cout<<"Enter Age:";
+        cin>>age;
+        cout<<"Enter Address:";
+        cin>>address;
+    }
+
+    void displayBasicInfo(){
+        cout<<"Name:"<<name<<"\n";
+        cout<<"Age:"<<age<<"\n";
+        cout<<"Address:"<<address<<"\n";
+    }
+};
+
+class DeptInfo{
+protected:
+    char deptName[30];
+    char natureofWork[30];
+
+public:
+    void acceptDeptInfo(){
+        cout<<"Enter Department Name:";
+        cin>>deptName;
+        cout<<"Enter Nature of Work:";
+        cin>>natureofWork;
+    }
+
+    void displayDeptInfo(){
+        cout<<"Department:"<<deptName<<"\n";
+        cout<<"Nature of Work:"<<natureofWork<<"\n";
+    }
+};
+
+class Employee : public BasicInfo, public DeptInfo {
+    int empId;
+
+public:
+    void accept(){
+        cout<<"Enter Employee ID:";
+        cin>>empId;
+        acceptBasicInfo();
+        acceptDeptInfo();
     }
 
     void display(){
-        cout<<name<<endl;
-        cout<<id<<endl;
-        cout<<salary<<endl;
+        cout<<"\n--- Employee Details ---\n";
+        cout<<"Employee ID:"<<empId<<"\n";
+        displayBasicInfo();
+        displayDeptInfo();
     }
-
 };
 
-
 int main(){
-    employee e[10];
+    Employee emp1, emp2;
 
-    e[1].accept();
-    cout<<"\nDetails:";
-    e[1].display();
+    cout << "\nEnter Details for Employee 1\n";
+    emp1.accept();
 
-    e[2].accept();
-    cout<<"\nDetails:";
-    e[2].display();
+    cout << "\nEnter Details for Employee 2\n";
+    emp2.accept();
 
-    e[3].accept();
-    cout<<"\nDetails:";
-    e[3].display();
-
+    cout << "\n";
+    emp1.display();
+    emp2.display();
 
     return 0;
-
-
 }
 
 
